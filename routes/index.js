@@ -62,6 +62,8 @@ router.post('/start', function (req, res) {
 })
 
 function returnMove(point, head) {
+  console.log('point', point);
+  console.log('head', head);
   if (point[0] > head[0]) {
     return "right";
   }
@@ -94,7 +96,8 @@ router.post('/move', function (req, res) {
     var points = findSafeAdjacentMoves(snake, snakes, dead_snake, height, width)
     // var move = findClosestToFood(points, food)
 
-    var point = points[Math.floor(Math.random()*moves.length)];
+    var point = points[Math.floor(Math.random()*points.length)];
+    console.log('snake', snake);
     var head = snake.coords[0]
 
     // Response data
