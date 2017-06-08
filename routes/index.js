@@ -73,8 +73,9 @@ router.post('/move', function (req, res) {
   console.log('width=' + width)
   // methods
   var snake = getMySnake(snakes, you)
-  var points = findSafeAdjacentMoves(snake, snakes, dead_snake, height, width)
-  var move = findClosestToFood(points, food)
+
+  // var points = findSafeAdjacentMoves(snake, snakes, dead_snake, height, width)
+  // var move = findClosestToFood(points, food)
   // Response data
   var data = {
     taunt: 'Outta my way, cucumbers!', // optional, but encouraged!
@@ -82,6 +83,16 @@ router.post('/move', function (req, res) {
 
   return res.json(data)
 })
+
+function getMySnake(snakes, you) {
+    return snakes.find(function(snake) {
+        if (snake.id == you) {
+            return true;
+        }
+        return false;
+    });
+
+}
 
 // health
 router.get('/health', function (req, res) {
