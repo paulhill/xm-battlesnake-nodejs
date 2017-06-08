@@ -148,7 +148,7 @@ function findSafeAdjacentMoves(snake, snakes, dead_snakes, height, width) {
   var options = [ [head[0], head[1]-1], [head[0], head[1]+1], [head[0]-1, head[1]], [head[0]+1, head[1]] ]
   // iterate through if it's safe
   var inbounds = options.filter(function(point) {
-    return point[0] >= 0 && point[0] <= width && point[1] >= 0 && point[1] <= height
+    return point[0] >= 0 && point[0] < width && point[1] >= 0 && point[1] < height
   })
   var snakePoints = []
   snakes.forEach(function(liveSnake) {
