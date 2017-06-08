@@ -71,8 +71,7 @@ router.post('/move', function (req, res) {
 
     // methods
     var snake = getMySnake(snakes, you)
-
-    // var points = findSafeAdjacentMoves(snake, snakes, dead_snake, height, width)
+    var points = findSafeAdjacentMoves(snake, snakes, dead_snake, height, width)
     // var move = findClosestToFood(points, food)
     // Response data
     var data = {
@@ -93,6 +92,18 @@ function getMySnake(snakes, you) {
         return false;
     });
 
+}
+
+//
+function findSafeAdjacentMoves(snake, snakes, dead_snake, height, width) {
+  var head = snake.coords[0]
+  // up, down, left, right
+  var options = [ [head[0], head[1]-1], [head[0], head[1]+1], [head[0]-1, head[1]], [head[0]+1, head[1]] ]
+  // iterate through if it's safe
+  var inbounds = options.filter(function(point) {
+    return point[0] >= 0 && point[0] <= width && point[1] >= 0 && point[1] <= height
+  })
+  return inbounds
 }
 
 // health
