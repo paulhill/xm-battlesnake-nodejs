@@ -106,7 +106,7 @@ router.post('/move', function (req, res) {
     var width = body.width
     var food = body.food
     var snakes = body.snakes
-    var dead_snake = body.dead_snake
+    var dead_snakes = body.dead_snakes
     var you = body.you
 
     // methods
@@ -118,12 +118,12 @@ router.post('/move', function (req, res) {
     //console.log('snake', snake);
     //var head = snake.coords[0]
 
+
     // Response data
     var data = {
       taunt: 'Outta my way, cucumbers!', // optional, but encouraged!
       move: move
     }
-
     return res.json(data);
   }
   catch (e) {
@@ -142,7 +142,7 @@ function getMySnake(snakes, you) {
 }
 
 //
-function findSafeAdjacentMoves(snake, snakes, dead_snake, height, width) {
+function findSafeAdjacentMoves(snake, snakes, dead_snakes, height, width) {
   var head = snake.coords[0]
   // up, down, left, right
   var options = [ [head[0], head[1]-1], [head[0], head[1]+1], [head[0]-1, head[1]], [head[0]+1, head[1]] ]
@@ -150,7 +150,25 @@ function findSafeAdjacentMoves(snake, snakes, dead_snake, height, width) {
   var inbounds = options.filter(function(point) {
     return point[0] >= 0 && point[0] <= width && point[1] >= 0 && point[1] <= height
   })
-  return inbounds
+  var snakePoints = []
+  snakes.forEach(function(liveSnake) {
+    liveSnake.coords.forEach(function(el) {
+      snakePoints.push(el)
+    });
+  });
+  dead_snakes.forEach(function(deadSnake) {
+    deadSnake.coords.forEach(function(el) {
+      snakePoints.push(el)
+    });
+  });
+  var safePoints = inbounds.filter(function(point) {
+    for (var i=0; i<snakePoints.length; i++) {
+      if (snakePoints[i][0] == point[0] && snakePoints[i][1] == point[1])
+        return false
+    }
+    return true
+  })
+  return safePoints
 }
 
 // health
