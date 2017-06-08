@@ -78,7 +78,7 @@ function returnMove(point, head) {
 
 
 function dist(a, b) {
-  return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[0]);
+  return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]);
 }
 
 function findClosestToFood(points, food, snake) {
@@ -111,7 +111,7 @@ router.post('/move', function (req, res) {
 
     // methods
     var snake = getMySnake(snakes, you)
-    var points = findSafeAdjacentMoves(snake, snakes, dead_snake, height, width)
+    var points = findSafeAdjacentMoves(snake, snakes, dead_snakes, height, width)
     var move = findClosestToFood(points, food, snake)
 
     //var point = points[Math.floor(Math.random()*points.length)];
