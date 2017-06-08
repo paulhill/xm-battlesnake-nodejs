@@ -43,6 +43,10 @@ router.post('/move', function (req, res) {
   console.log('you=' + you)
   console.log('height=' + height)
   console.log('width=' + width)
+  // methods
+  var snake = getMySnake(snakes, you)
+  var points = findSafeAdjacentMoves(snake, snakes, dead_snake, height, width)
+  var move = findClosestToFood(points, food)
   // Response data
   var data = {
     taunt: 'Outta my way, cucumbers!', // optional, but encouraged!
