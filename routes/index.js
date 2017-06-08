@@ -86,7 +86,7 @@ function findClosestToFood(points, food, snake) {
   var head  = snake.coords[0];
 
   points = points.sort(function (a, b) {
-    return dist(a, food) - dist(b, food);
+    return dist(b, food) - dist(a, food);
   });
 
   console.log('points', points);
