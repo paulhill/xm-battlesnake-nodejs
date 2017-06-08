@@ -86,7 +86,7 @@ router.post('/move', function (req, res) {
       move: moves[Math.floor(Math.random()*moves.length)]
     }
 
-    req.json(data);
+    return res.json(data);
   }
   catch (e) {
     console.error(e);
