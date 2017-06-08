@@ -27,6 +27,13 @@ var tailTypes = [
   "block-bum"
 ];
 
+var moves = [
+  "down",
+  "up",
+  "left",
+  "right"
+];
+
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
   // start the game
@@ -76,8 +83,10 @@ router.post('/move', function (req, res) {
     // Response data
     var data = {
       taunt: 'Outta my way, cucumbers!', // optional, but encouraged!
-      move: 'down'
+      move: moves[Math.floor(Math.random()*moves.length)]
     }
+
+    req.json(data);
   }
   catch (e) {
     console.error(e);
