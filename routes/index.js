@@ -48,7 +48,7 @@ router.post('/start', function (req, res) {
     var data = {
       color: "#DFFF00",
       name: "teamradiohead",
-      //head_url: "http://www.placecage.com/c/200/200", // optional, but encouraged!
+      head_url: "https://www.dropbox.com/s/auaoh6kkauko7p4/LOGO.png?dl=0",
       taunt: "Cucumbers!", // optional, but encouraged!
       head_type: headTypes[Math.floor(Math.random()*headTypes.length)],
       tail_type: tailTypes[Math.floor(Math.random()*tailTypes.length)]
