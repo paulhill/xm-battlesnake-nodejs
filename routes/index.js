@@ -29,4 +29,9 @@ router.post('/move', function (req, res) {
   return res.json(data)
 })
 
+// health
+router.get('/health', function (req, res) {
+  return res.send("OK");
+})
+
 module.exports = router
