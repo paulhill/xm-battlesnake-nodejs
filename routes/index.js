@@ -3,17 +3,28 @@ var router  = express.Router()
 var bodyParser = require('body-parser')
 var app = express()
 app.use(bodyParser.json())
+var game_id;
+var height;
+var width;
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
-  // NOTE: Do something here to start the game
+  // start the game
+
+  game_id = req.game_id;
+  height = req.height;
+  width = req.width;
+
+  console.log('game_id', game_id);
+  console.log('height', height);
+  console.log('width', width);
 
   // Response data
   var data = {
     color: "#DFFF00",
-    name: "ContraSnake",
-    head_url: "http://www.placecage.com/c/200/200", // optional, but encouraged!
-    taunt: "Let's do thisss thang!", // optional, but encouraged!
+    name: "teamradiohead",
+    //head_url: "http://www.placecage.com/c/200/200", // optional, but encouraged!
+    taunt: "Cucumbers!", // optional, but encouraged!
   }
 
   return res.json(data)
@@ -34,11 +45,15 @@ router.post('/move', function (req, res) {
   console.log('width=' + width)
   // Response data
   var data = {
-    move: 'down', // one of: ['up','down','left','right']
-    taunt: 'Outta my way, loser!', // optional, but encouraged!
+    taunt: 'Outta my way, cucumbers!', // optional, but encouraged!
   }
 
   return res.json(data)
+})
+
+// health
+router.get('/health', function (req, res) {
+  return res.send("OK");
 })
 
 module.exports = router
