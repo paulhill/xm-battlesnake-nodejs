@@ -76,6 +76,24 @@ function returnMove(point, head) {
   else return "up";
 }
 
+
+function dist(a, b) {
+  return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[0]);
+}
+
+function findClosestToFood(points, food, snake) {
+
+  var head  = snake.coords[0];
+
+  points = points.sort(function (a, b) {
+    return dist(a, food) - dist(b, food);
+  });
+
+  console.log('points', points);
+
+  return returnMove(points[0], head);
+}
+
 // Handle POST request to '/move'
 router.post('/move', function (req, res) {
   // NOTE: Do something here to generate your move
@@ -94,16 +112,16 @@ router.post('/move', function (req, res) {
     // methods
     var snake = getMySnake(snakes, you)
     var points = findSafeAdjacentMoves(snake, snakes, dead_snake, height, width)
-    // var move = findClosestToFood(points, food)
+    var move = findClosestToFood(points, food, snake)
 
-    var point = points[Math.floor(Math.random()*points.length)];
-    console.log('snake', snake);
-    var head = snake.coords[0]
+    //var point = points[Math.floor(Math.random()*points.length)];
+    //console.log('snake', snake);
+    //var head = snake.coords[0]
 
     // Response data
     var data = {
       taunt: 'Outta my way, cucumbers!', // optional, but encouraged!
-      move: returnMove(point, head)
+      move: move
     }
 
     return res.json(data);
