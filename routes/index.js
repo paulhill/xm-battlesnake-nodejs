@@ -6,6 +6,31 @@ app.use(bodyParser.json())
 var game_id;
 var height;
 var width;
+var headTypes = [
+  "bendr",
+  "dead",
+  "fang",
+  "pixel",
+  "regular",
+  "safe",
+  "sand-worm",
+  "shades",
+  "smile",
+  "tongue"
+];
+
+var tailTypes = [
+  "small-rattle",
+  "skinny-tail",
+  "round-bum",
+  "regular",
+  "pixel",
+  "freckled",
+  "fat-rattle",
+  "curled",
+  "block-bum"
+];
+
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
@@ -25,6 +50,9 @@ router.post('/start', function (req, res) {
     name: "teamradiohead",
     //head_url: "http://www.placecage.com/c/200/200", // optional, but encouraged!
     taunt: "Cucumbers!", // optional, but encouraged!
+    head_type: headTypes[Math.floor(Math.random()*headTypes.length)],
+    tail_type: tailTypes[Math.floor(Math.random()*tailTypes.length)]
+    //secondary_color: ""
   }
 
   return res.json(data)
