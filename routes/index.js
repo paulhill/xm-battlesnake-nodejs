@@ -62,20 +62,25 @@ router.post('/start', function (req, res) {
 })
 
 function returnMove(point, head) {
-  console.log('point', point);
-  console.log('head', head);
-  if (point[0] > head[0]) {
-    return "right";
+  var dx = point[0] - head[0];
+  var dy = point[1] - head[1];
+  if (Math.abs(dx) > Math.abs(dy)) {
+    if (dx > 0) {
+      return "right";
+    }
+    else {
+      return "left";
+    }
   }
-  else if (point[0] < head[0]) {
-    return "left";
+  else {
+    if (dy > 0) {
+      return "down";
+    }
+    else {
+      return "up";
+    }
   }
-  else if (point[1] > head[1]) {
-    return "down";
-  }
-  else return "up";
 }
-
 
 function dist(a, b) {
   return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]);
