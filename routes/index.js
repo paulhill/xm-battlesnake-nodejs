@@ -77,6 +77,7 @@ router.post('/move', function (req, res) {
     // Response data
     var data = {
       taunt: 'Outta my way, cucumbers!', // optional, but encouraged!
+      move: 'down'
     }
   }
   catch (e) {
