@@ -91,7 +91,7 @@ function findClosestToFood(points, food, snake) {
   var head  = snake.coords[0];
 
   points = points.sort(function (a, b) {
-    return dist(b, food) - dist(a, food);
+    return dist(a, food) - dist(b, food);
   });
 
   console.log('points', points);
@@ -109,7 +109,7 @@ router.post('/move', function (req, res) {
   try {
     var height = body.height
     var width = body.width
-    var food = body.food
+    var food = body.food[0]
     var snakes = body.snakes
     var dead_snakes = body.dead_snakes
     var you = body.you
